@@ -98,14 +98,20 @@
 //! Testing:
 //!
 //! * `with_test_support`: Enables the test support module.
+
 #![warn(missing_docs)]
 
 mod defaults;
 mod init;
 mod transport;
 
+// re-export from core
 #[doc(inline)]
 pub use sentry_core::*;
+
+// added public API
+pub use crate::defaults::apply_defaults;
+pub use crate::init::{init, ClientInitGuard};
 
 /// Available Sentry Integrations.
 pub mod integrations {
@@ -132,10 +138,11 @@ pub mod integrations {
 /// This module contains types that users of the crate typically do not
 /// have to interface with directly.  These are often returned
 /// from methods on other types.
+#[deprecated = "These exports have been moved to the root or the `types` mod."]
 pub mod internals {
     pub use crate::defaults::apply_defaults;
     pub use crate::init::ClientInitGuard;
-    pub use sentry_core::internals::*;
+    pub use sentry_core::types::*;
 }
 
 /// The provided transports.
@@ -155,5 +162,3 @@ pub mod transports {
     #[cfg(any(feature = "with_reqwest_transport", feature = "with_curl_transport"))]
     pub use crate::transport::HttpTransport;
 }
-
-pub use crate::init::init;
