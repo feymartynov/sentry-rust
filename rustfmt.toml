@@ -1,0 +1,3 @@
+# Uncomment and use this with `cargo +nightly fmt -p sentry-core`:
+# unstable_features = true
+# format_code_in_doc_comments = true
