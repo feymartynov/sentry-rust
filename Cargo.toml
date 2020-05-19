@@ -13,3 +13,6 @@ members = [
     "sentry-panic",
     "sentry-types",
 ]
+
+[profile.dev.build-override]
+opt-level = 0
